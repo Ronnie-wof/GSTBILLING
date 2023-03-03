@@ -19,15 +19,6 @@ public class ApplicationController {
     private ProductService productService;
     @Autowired
     private ProductService productService1;
-   /* @ResponseBody
-    @RequestMapping(value="/")
-    public String func(ModelMap model,HttpServletRequest request)
-    {
-
-
-        //request.setAttribute("products", productService.showAllProducts());
-        return "<a href='product'>Click here to access Application</a>";
-    }*/
 
    @RequestMapping("/")
    public String func2(HttpServletRequest request){
@@ -35,15 +26,6 @@ public class ApplicationController {
        request.setAttribute("products", productService.showAllProducts());
        return "product";
        }
-
-
-
-
-    /*@RequestMapping("/product")
-    public String func2(ModelMap model)
-    {
-        return "product";
-    }*/
 
     @RequestMapping(value="/product")
     public String showProductPage(ModelMap model,HttpServletRequest request){
@@ -72,18 +54,8 @@ public class ApplicationController {
             String productName = productCode;
             System.out.println(productCode);
             Product products = productService.findByProductCodeOrProductname(productCode, productName);
-        /*double cost=products.getProductPrice()+products.getProductPrice()*products.getProductGST()*0.01;
-        String temp=String.valueOf(cost);
-        temp=temp.substring(0,temp.indexOf(".")+3);
-        cost=Double.parseDouble(temp);
-        products.setProductPrice(cost);*/
-
             productService1.saveProduct1(products);
-            //searchP.add(products);
-            //request.setAttribute("products1", searchP);
-            //model.addAttribute("products1", products);
             request.setAttribute("products1", productService1.showAllProducts1(products));
-            //System.out.println(searchP);
         }
         catch(Exception e){
             String x="Please enter valid product code or name.";
